@@ -43,16 +43,85 @@ Do Until IsEmpty(ActiveCell)
      'Highlight Task and Status as Red'
      Range(ActiveCell, ActiveCell.Offset(0, -1)).Select
      Selection.Style = "Bad"
-     'Highlight done tasks as green
-     If (ActiveCell.Value = "Done") Or (ActiveCell.Value = "done") Then
-        ActiveCell.Select
-        Selection.Style = "Good"
-     End If
+     'Add thick border
+        Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+        Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+        With Selection.Borders(xlEdgeLeft)
+            .LineStyle = xlContinuous
+            .ColorIndex = 0
+            .TintAndShade = 0
+            .Weight = xlMedium
+        End With
+        With Selection.Borders(xlEdgeTop)
+            .LineStyle = xlContinuous
+            .ColorIndex = 0
+            .TintAndShade = 0
+            .Weight = xlMedium
+        End With
+        With Selection.Borders(xlEdgeBottom)
+            .LineStyle = xlContinuous
+            .ColorIndex = 0
+            .TintAndShade = 0
+            .Weight = xlMedium
+        End With
+        With Selection.Borders(xlEdgeRight)
+            .LineStyle = xlContinuous
+            .ColorIndex = 0
+            .TintAndShade = 0
+            .Weight = xlMedium
+        End With
+        Selection.Borders(xlInsideVertical).LineStyle = xlNone
+        Selection.Borders(xlInsideHorizontal).LineStyle = xlNone
+        
+        'Highlight done tasks as green
+        If (ActiveCell.Value = "Done") Or (ActiveCell.Value = "done") Then
+           ActiveCell.Select
+           Selection.Style = "Good"
+        End If
      ActiveCell.Offset(0, 1).Select
     End If
 ActiveCell.Offset(1, 0).Select
 Loop
 End Sub
+Sub thick_border()
+'
+' thick_border Macro
+'
+
+'
+    Range("B18").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    Selection.Borders(xlInsideHorizontal).LineStyle = xlNone
+End Sub
+
+
+
 Sub Highlight_Rows()
 '
 ' Highlight_Rows Macro
@@ -100,6 +169,7 @@ ActiveCell.Offset(1, 0).Select
 Loop
 End Sub
 
+
 Sub sort_by_due_date()
 '
 ' sort_by_due_date Macro
@@ -123,3 +193,4 @@ Sub sort_by_due_date()
         .Apply
     End With
 End Sub
+
