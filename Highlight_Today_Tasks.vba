@@ -39,6 +39,21 @@ End With
 'Loop through cells until empty cell and see if date is today
 Range("B2").Select
 Do Until IsEmpty(ActiveCell)
+    'remove border first (so only today's tasks have borders)
+    Range(ActiveCell, ActiveCell.Offset(0, -1)).Select
+    
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    Selection.Borders(xlEdgeLeft).LineStyle = xlNone
+    Selection.Borders(xlEdgeTop).LineStyle = xlNone
+    Selection.Borders(xlEdgeBottom).LineStyle = xlNone
+    Selection.Borders(xlEdgeRight).LineStyle = xlNone
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    Selection.Borders(xlInsideHorizontal).LineStyle = xlNone
+    
+    ActiveCell.Offset(0, 1).Select
+    
+    'if it is today's task add a border, make task red
     If ActiveCell.Offset(0, 2) = Range("H2") Then  'Range("H2") is today's date
      'Highlight Task and Status as Red'
      Range(ActiveCell, ActiveCell.Offset(0, -1)).Select
@@ -81,7 +96,26 @@ Do Until IsEmpty(ActiveCell)
      ActiveCell.Offset(0, 1).Select
     End If
 ActiveCell.Offset(1, 0).Select
+'ActiveCell.Offset(1, 1).Select
 Loop
+End Sub
+Sub remove_border()
+'
+' remove_border Macro
+'
+
+'
+    Range("B5").Select
+    ActiveWindow.SmallScroll Down:=9
+    Range("B15").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    Selection.Borders(xlEdgeLeft).LineStyle = xlNone
+    Selection.Borders(xlEdgeTop).LineStyle = xlNone
+    Selection.Borders(xlEdgeBottom).LineStyle = xlNone
+    Selection.Borders(xlEdgeRight).LineStyle = xlNone
+    Selection.Borders(xlInsideVertical).LineStyle = xlNone
+    Selection.Borders(xlInsideHorizontal).LineStyle = xlNone
 End Sub
 Sub thick_border()
 '
